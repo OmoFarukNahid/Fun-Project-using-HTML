@@ -14,6 +14,7 @@ body {
   align-items: center;
 }
 
+
 /* Navigation Bar */
 nav {
   position: fixed;
@@ -26,19 +27,19 @@ nav {
   align-items: center;
   z-index: 1000;
 }
+
 .searchlab-link {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-
-
 .nav-icon {
   width: 20px;
   height: 20px;
   object-fit: contain;
 }
+
 .nav-right {
   display: flex;
   align-items: center;
@@ -51,9 +52,11 @@ nav {
   font-size: 13px;
   padding: 5px 10px;
 }
+
 .nav-link:hover {
   text-decoration: underline;
 }
+
 #apps-link,
 #user-icon {
   padding: 8px;
@@ -99,16 +102,18 @@ main {
 /* Google Logo */
 .google-logo {
   display: block;
-  width: 300px;
-  margin: 100px auto 30px auto;
+  width: 40%;
+  max-width: 300px;
+  height: auto;
+  margin: 80px auto 30px auto;
 }
 
 /* Search container */
 .search-container {
   display: flex;
-  align-items: center;
-  width: 600px;
-  max-width: 90%;
+  align-items: center; /* centers everything vertically */
+  width: 90%;
+  max-width: 600px;
   margin: 0 auto 40px auto;
   padding: 10px 15px;
   border: 1px solid #dfe1e5;
@@ -126,6 +131,8 @@ main {
   font-size: 16px;
   padding: 0 10px;
   background: transparent;
+  height: 24px; /* makes input height similar to icons */
+
 }
 
 /* Hover + focus */
@@ -137,25 +144,40 @@ main {
 
 /* Left search icon */
 .search-icon {
-  font-size: 20px;
+  font-size: 24px; /* same size as right icons */
   color: #9aa0a6;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Right mic + lens icons */
 .right-icons {
-  display: flex;
-  gap: 12px;
-  font-size: 20px;
-  cursor: pointer;
+  display: inline-flex;
+  align-items: center; /* center vertically */
+  gap: 10px;
+
 }
 
+
 .right-icons span {
+  font-size: 24px; /* same size as left icon */
   color: #5f6368;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .right-icons span:hover {
   color: #202124;
+}
+.right-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-decoration: none;
+  outline: none;
 }
 
 /* Recent websites section */
@@ -179,12 +201,11 @@ main {
 .sites-grid {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  /* desktop: single row */
   gap: 16px;
-  /* Adjust spacing between boxes */
   padding-bottom: 10px;
-  max-width: 90%;
-  /* Adjust container width if needed */
+  max-width: 100%;
 }
 
 .site-box {
@@ -195,12 +216,10 @@ main {
   transition: transform 0.2s;
   text-decoration: none;
   padding: 10px;
-  /* Adjust padding if needed */
   border-radius: 8px;
-  min-width: 30px;
-
-  /* Adjust this value */
-  flex-shrink: 0;
+  min-width: 80px;
+  flex: 1 1 100px;
+  max-width: 120px;
 }
 
 .site-box:hover {
@@ -210,9 +229,7 @@ main {
 
 .site-icon {
   width: 35px;
-  /* Adjust icon width */
   height: 35px;
-  /* Adjust icon height */
   border-radius: 50%;
   background-color: #e8f0fe;
   display: flex;
@@ -240,14 +257,17 @@ main {
 
 /* Media query for responsiveness */
 @media (max-width: 768px) {
+  .google-logo {
+    width: 60%;
+  }
+
   .search-container {
-    width: 90%;
+    width: 95%;
   }
 
   .sites-grid {
-    justify-content: flex-start;
-    overflow-x: auto;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    /* allow wrapping on tablet */
     justify-content: center;
   }
 
@@ -256,38 +276,125 @@ main {
   }
 }
 
-/*footer */
-/* Footer */
+@media (max-width: 480px) {
+  nav {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .google-logo {
+    width: 70%;
+  }
+
+  .site-box {
+    max-width: 80px;
+  }
+
+  .sites-grid {
+    flex-wrap: wrap;
+    /* stacked grid for mobile */
+    gap: 12px;
+  }
+
+  footer {
+    font-size: 10px;
+    padding: 10px 14px;
+    right: 10px;
+    bottom: 10px;
+    max-width: 260px;
+  }
+
+  footer details[open] {
+    min-width: 200px;
+    max-width: 400px;
+    padding: 0px;
+  }
+
+  footer details p {
+    font-size: 20px;
+    /* smaller on very small screens */
+  }
+}
+
+/* ---------- Footer ---------- */
 footer {
+--footer-bg: linear-gradient(
+      135deg,
+    #4285f4 0%,
+    #34a853 25%,
+    #fbbc05 50%,
+    #ea4335 75%,
+    #4285f4 100%
+);
   position: fixed;
   bottom: 15px;
   right: 20px;
-  background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
-  color: #fff;
+  background: var(--footer-bg);
+  color: #fff; 
+
   padding: 12px 18px;
   border-radius: 12px;
   font-size: 13px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+}
 
-  
+footer details {
+  position: relative;
 }
 
 footer details summary {
   cursor: pointer;
   font-weight: bold;
   list-style: none;
+
+
 }
 
+/* Expand upward */
 footer details[open] {
-  margin-top: 5px;
+  margin-top: 2px;
+  /* keep exactly what you asked for */
+  display: block;
+  /* ensure block layout inside footer */
+  box-sizing: border-box;
+  width: auto;
+  /* natural width (no absolute positioning) */
+  white-space: normal;
+  /* allow wrapping */
+  overflow-wrap: anywhere;
+  /* break long words/URLs when needed */
+  word-break: break-word;
+  /* help with long, unbroken strings */
+  max-width: calc(120vw - 40px);
+  /* prevents overflow off-screen on narrow devices */
+
+
 }
 
 footer details p {
+      color:rgba(0, 0, 0, 0.85); 
   margin-top: 8px;
   line-height: 1.4;
-  font-size: 20px;
+  font-size: 18px;
+  /* kept original */
+
+
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
+
+@media (max-width: 480px) {
+  footer details p {
+    margin-top: 4px;
+    line-height: 1.4;
+    font-size: 12px;
+    /* kept original */
+    box-sizing: border-box;
+
+
+  }
+}
+
 /* Social media links inside footer */
 footer .social-links {
   margin-top: 10px;
@@ -297,12 +404,27 @@ footer .social-links {
 }
 
 footer .social-links a {
-  color: black;
+  color: #e0e0e0;
+  /* kept original */
   text-decoration: none;
   font-size: 12px;
   transition: color 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); 
+
 }
 
 footer .social-links a:hover {
-  color: blue;
+  color: blue ;
+  transform: scale(1.05);
+
 }
+
+@media (max-width: 480px) {
+  footer .social-links a {
+    font-size: 9px;
+    gap: 3px;
+  }
+}
+
+
+/* */
